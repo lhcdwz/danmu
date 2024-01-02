@@ -1,21 +1,23 @@
-<!-- @作者：刘洪材
-弹幕滚动效果
-编写日期:2023年12月26日 -->
+<!-- @作者：刘洪材 -->
+<!-- 弹幕滚动效果 -->
+<!-- 编写日期:2023年12月26日 -->
 <!DOCTYPE html>
 <html>
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>弹幕-lhc</title>
   <style>
     @font-face {
 		/* 字体名称 */
+    /* 这里使用的阿里妈妈免费商用字体 */
 		font-family: AlimamaDongFangDaKai-Regular;
 
 		/* 字体文件地址，按照优先级从高到低依次排列 */
-		src:url(https://puhuiti.oss-cn-hangzhou.aliyuncs.com/AlimamaDongFangDaKai/AlimamaDongFangDaKai-Regular/AlimamaDongFangDaKai-Regular.eot) format('embedded-opentype'),
-			url(https://puhuiti.oss-cn-hangzhou.aliyuncs.com/AlimamaDongFangDaKai/AlimamaDongFangDaKai-Regular/AlimamaDongFangDaKai-Regular.otf) format('opentype'),
-      url(./Alimama_DongFangDaKai_Regular.ttf) format('TrueType'),
-			url(https://puhuiti.oss-cn-hangzhou.aliyuncs.com/AlimamaDongFangDaKai/AlimamaDongFangDaKai-Regular/AlimamaDongFangDaKai-Regular.woff) format('woff'),
-			url(https://puhuiti.oss-cn-hangzhou.aliyuncs.com/AlimamaDongFangDaKai/AlimamaDongFangDaKai-Regular/AlimamaDongFangDaKai-Regular.woff2) format('woff2');
+		src: 
+      url(./Alimama_font-lhc.ttf) format('TrueType'),
+			url(./Alimama_font-lhc.woff) format('woff'),
+			url(./Alimama_font-lhc.woff2) format('woff2');
 	}
 
     body {
@@ -34,9 +36,9 @@
     .danmu {
       position: absolute;
       white-space: nowrap;
-      font-size: 18px;
       color: white;
-      text-shadow: 1px 1px 1px black;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.459);  /* 添加字体阴影效果，不好看就干掉 */
+      /* 添加一个水平和垂直偏移量为 1 像素、模糊半径为 1 像素、颜色为 rgba(0, 0, 0) 的阴影效果 */
       right: -100%;
       /* 初始位置在屏幕右侧外部 */
     }
@@ -107,7 +109,7 @@
 
       const now = Date.now(); // 当前时间戳
       let top = Math.floor(Math.random() * window.innerHeight);
-      const threshold = 30; // 在同一行判断的阈值
+      const threshold = 35; // 判断在同一行的阈值，略微大于弹幕大小就行了
 
       // 检查新弹幕与已存在弹幕在同一行的持续时间
       while (usedRows.some(row => {
